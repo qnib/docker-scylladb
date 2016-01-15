@@ -1,0 +1,23 @@
+consul:
+  image: qnib/consul
+  ports:
+   - "8500:8500"
+  environment:
+   - DC_NAME=dc1
+   - CONSUL_BOOTSTRAP=true
+  dns: 127.0.0.1
+  hostname: consul
+  container_name: consul
+  privileged: true
+
+scylladb:
+  image: qnib/scylladb
+  ports:
+   - "9042:9042"
+  environment:
+   - DC_NAME=dc1
+  volumes:
+   - /data/scylla/
+  dns: 127.0.0.1
+  hostname: scylladb
+  container_name: scylladb
